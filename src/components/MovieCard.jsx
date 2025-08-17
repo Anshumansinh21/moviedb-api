@@ -34,7 +34,7 @@ function MovieCard({ movie }) {
         <p className="text-gray-600 text-sm mt-1 line-clamp-2">{movie.description}</p>
 
         <div className="mt-3 text-sm text-gray-500">
-          <p><span className="font-medium">Release:</span> {movie.releaseDate}</p>
+          <p><span className="font-medium">Release:</span> {movie.release_date?.split('-')[0]}</p>
         </div>
 
         {/* Button */}
