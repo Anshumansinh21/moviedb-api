@@ -1,8 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { useMovieContext } from '../context/MovieContext';
 
 function MovieCard({ movie }) {
+  const { isFavorite, addFavorite, removeFavorite } = useMovieContext();
+
+  const favorite = isFavorite(movie.id);
+
   function handleFavorite() {
-    alert(`${movie.title} has been added to favorites!`);
+    if (favorite) {
+      removeFavorite(movie.id);
+    } else {
+      addFavorite(movie);
+    }
   }
 
   return (
@@ -31,13 +40,17 @@ function MovieCard({ movie }) {
         {/* Button */}
         <button
           onClick={handleFavorite}
-          className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors duration-200"
+          className={`w-full mt-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+            favorite 
+              ? "bg-red-600 hover:bg-red-700 text-white" 
+              : "bg-blue-600 hover:bg-blue-700 text-white"
+          }`}
         >
-          Add to Favorites
+          {favorite ? "Remove from Favorites" : "Add to Favorites"}
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default MovieCard;

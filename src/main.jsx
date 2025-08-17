@@ -3,10 +3,16 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import { MovieProvider } from './context/MovieContext'
 
+// index.jsx
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <BrowserRouter><App /></BrowserRouter>
-    
-  </StrictMode>,
-)
+    <BrowserRouter>
+      <MovieProvider>
+        <App />
+      </MovieProvider>
+    </BrowserRouter>
+  </StrictMode>
+);
+
